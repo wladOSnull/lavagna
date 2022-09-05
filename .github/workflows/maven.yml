@@ -10,8 +10,7 @@ on:
 
 jobs:
 
-  build_artefact:
-
+  build-war-artefact:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,8 +30,37 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Upload artifact
+    - name: Upload .war artifact
       uses: actions/upload-artifact@v3
       with:
         name: lavagna.war
-        path: target/lavagna.war    
+        path: target/lavagna.war
+
+  deploy-to-AWS-EB:
+    runs-on: ubuntu-latest
+    
+    steps:
+#    - name: Checkout source code
+#      uses: actions/checkout@v2
+
+    - name: Download .war artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: lavagna.war
+
+    - name: Display structure of downloaded files
+      run: ls -R    
+
+    - name: Generate deployment package
+      run: zip -r lavagna.zip . -x '*.git*'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v20
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: lavagna_github_war
+        environment_name: Lavagnagithubwar-env
+        version_label: "version-${{ steps.format-time.outputs.replaced }}"
+        region: us-east-1
+        deployment_package: lavagna.zip 
