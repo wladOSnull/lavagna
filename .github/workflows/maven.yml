@@ -38,6 +38,7 @@ jobs:
 
   deploy-to-AWS-EB:
     runs-on: ubuntu-latest
+    needs: build-war-artefact
     
     steps:
 #    - name: Checkout source code
