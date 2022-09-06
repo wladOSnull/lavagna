@@ -113,7 +113,8 @@ jobs:
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
       with:
-        wait_for_environment_recovery: 180
+        wait_for_deployment: false
+#        wait_for_environment_recovery: 180
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: lavagna_docker_compose
