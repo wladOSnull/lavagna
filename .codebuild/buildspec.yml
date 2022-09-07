@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+
+  install:
+    runtime-versions:
+      java: corretto8
+
+  build:
+    commands:
+      - mvn install
+
+  post_build:
+    commands:
+      - mv target/lavagna.war ROOT.war      
+
+artifacts:
+  
+  files:
+    - ROOT.war
+
+  secondary-artifacts:
+    embedded_jetty:
+      base-directory: target
+      files:
+        - lavagna-jetty-console.war
+
+cache:
+  paths:
+    - '/root/.m2/**/*'

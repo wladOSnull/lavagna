@@ -8,8 +8,8 @@ permissions:
   contents: read
 
 on:
-  push:
-    branches: [ "master" ]
+#  push:
+#    branches: [ "master" ]
   workflow_dispatch:
 
 env:
@@ -51,7 +51,7 @@ jobs:
         name: lavagna.war
         path: target/lavagna.war
 
-  docker-build:
+  docker-build-push:
     needs: maven-build
     runs-on: ubuntu-latest
     
@@ -114,7 +114,6 @@ jobs:
       uses: einaregilsson/beanstalk-deploy@v20
       with:
         wait_for_deployment: false
-#        wait_for_environment_recovery: 180
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: lavagna_docker_compose
