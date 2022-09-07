@@ -23,19 +23,12 @@ phases:
 
       - mv lavagna.war ROOT.war
 
-      - zip -r lavagna.zip docker-compose.yml .ebextensions
-
 artifacts:
   
   files:
-    - lavagna.zip
+    - ROOT.war
 
   secondary-artifacts:
-    
-    simple_war:
-      files: 
-        - ROOT.war
-    
     embedded_jetty:
       base-directory: target
       files:
