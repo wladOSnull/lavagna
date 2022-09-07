@@ -22,3 +22,4 @@ This is a high level roadmap. Lavagna has currently:
 
  - enable Content-Security-Policy
  - decent i18n
+ 
