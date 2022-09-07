@@ -26,15 +26,15 @@ phases:
 #      - zip -r lavagna.zip docker-compose.yml .ebextensions
 
       - mkdir prod
-      - mv docker-compose.yml .ebextensions prod
+#      - mv docker-compose.yml .ebextensions prod
 
 artifacts:
   
   files:
 #    - lavagna.zip
-    - prod/**/*
-#    - docker-compose.yml 
-#    - .ebextensions/**/*
+#    - prod/**/*
+    - docker-compose.yml 
+    - .ebextensions/**/*
 
   secondary-artifacts:
     
