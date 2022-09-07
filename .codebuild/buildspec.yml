@@ -23,12 +23,14 @@ phases:
 
       - mv lavagna.war ROOT.war
 
-      - zip -r lavagna.zip docker-compose.yml .ebextensions
+#      - zip -r lavagna.zip docker-compose.yml .ebextensions
 
 artifacts:
   
   files:
-    - lavagna.zip
+#    - lavagna.zip
+    - docker-compose.yml 
+    - .ebextensions
 
   secondary-artifacts:
     
