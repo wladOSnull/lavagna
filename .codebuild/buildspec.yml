@@ -30,8 +30,6 @@ phases:
 artifacts:
   
   files:
-#    - lavagna.zip
-#    - prod/**/*
     - docker-compose.yml
     - .env
     - .ebextensions/**/*
