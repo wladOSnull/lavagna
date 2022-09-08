@@ -25,15 +25,19 @@ phases:
 
 #      - zip -r lavagna.zip docker-compose.yml .ebextensions
 
-      - mkdir prod
+#      - mkdir prod
 #      - mv docker-compose.yml .ebextensions prod
+      - ls -la
+      - cp -r $CODEBUILD_SRC_DIR_Source2/. ./
+      - ls -la
 
 artifacts:
   
   files:
 #    - lavagna.zip
 #    - prod/**/*
-    - docker-compose.yml 
+    - docker-compose.yml
+    - .env
     - .ebextensions/**/*
 
   secondary-artifacts:
